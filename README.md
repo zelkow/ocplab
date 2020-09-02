@@ -24,10 +24,19 @@ __Installation of Kubeflow__
  Understanding the kfctl and kubeflow configuration process : https://www.kubeflow.org/docs/ibm/deploy/install-kubeflow/
  
  
-       - getting the standard config yaml file (kustumize targets, overlays)
-       - select type of install (istio, kubernetes, openshift)
-       - configure locally in kubeflow_config
-       - apply to the (oc/k8) cluster
+  - getting the standard config yaml file (kustumize targets, overlays)
+  - select type of install (istio, kubernetes, openshift)
+  - configure locally in kubeflow_config
+  - apply to the (oc/k8) cluster
 
 
+		git clone https://github.com/opendatahub-io/manifests.git
+		cd manifests
+ 		sed -i 's#uri: .*#uri: '$PWD'#' ./kfdef/kfctl_openshift.yaml
+		kfctl build --file=kfdef/kfctl_openshift.yaml
+		kfctl apply --file=./kfdef/kfctl_openshift.yaml
 
+ - checks 
+ 
+ 		oc get pods
+ 		
